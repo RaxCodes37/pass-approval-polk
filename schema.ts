@@ -4,7 +4,9 @@ import { pgTable, text, timestamp, boolean, index, uuid } from "drizzle-orm/pg-c
 export const passesTable = pgTable("passes", {
   passId: uuid("pass_id").defaultRandom().primaryKey(),
   studentName: text("student_name").notNull(),
-  passFromClass: text("class_student_departed_from").notNull(),
+  classDepartedFrom: text("class_student_departed_from").notNull(),
+  destination: text("destination").notNull(),
+  reason: text("reason_for_pass").notNull(),
   timeOfDeparture: timestamp("time_of_departure").defaultNow().notNull(),
   timeOfReturn: timestamp("time_of_return").notNull(),
 })
