@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "@better-auth/drizzle-adapter";
-import { db } from "@/app/index";
+import { db } from "@/lib/index";
 import { nextCookies } from "better-auth/next-js";
 import { headers } from "next/headers";
 import "dotenv/config";
