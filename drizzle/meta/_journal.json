@@ -15,6 +15,13 @@
       "when": 1789440517628,
       "tag": "0001_uneven_leo",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789444195995,
+      "tag": "0002_happy_zeigeist",
+      "breakpoints": true
     }
   ]
 }
