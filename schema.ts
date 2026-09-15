@@ -1,5 +1,13 @@
 import { relations } from "drizzle-orm";
-import { pgTable, text, timestamp, boolean, index } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, boolean, index, uuid } from "drizzle-orm/pg-core";
+
+export const passesTable = pgTable("passes", {
+  passId: uuid("pass_id").defaultRandom().primaryKey(),
+  studentName: text("student_name").notNull(),
+  passFromClass: text("class_student_departed_from").notNull(),
+  timeOfDeparture: timestamp("time_of_departure").defaultNow().notNull(),
+  timeOfReturn: timestamp("time_of_return").notNull(),
+})
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -7,6 +15,9 @@ export const user = pgTable("user", {
   email: text("email").notNull().unique(),
   emailVerified: boolean("email_verified").default(false).notNull(),
   image: text("image"),
+  role: text("user_role").notNull().default("member"),
+  // ! Need to add a function that checks different email types from each other so that if an admin logs-in 
+  // ! The program checks the admin's email and the admin will have his privileges instantly.
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
