@@ -3,12 +3,48 @@
 :root {
   --background: linear-gradient(to bottom, #396181, #2f487f);
   --foreground: #fff;
-  --container-bg: #6b88c6;
-  --container-border: #3d53ab;
+  --container-bg: #5471b0;
+  --container-border: #2f3e7e;
+  --element-bg: #2b397b;
+  --element-border: #4556a7;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+#pass-form input, #pass-form button {
+  background-color: var(--element-bg);
+  border: 2px solid var(--element-border);
+  border-radius: 6px;
+  padding: 2px 4px;
+  font-size: 1.2rem;
+
+  transition: 400ms;
+}
+
+#pass-form button:hover {
+  background-color: var(--element-border);
+  border-color: var(--element-bg);
+}
+
+input:focus {
+  outline: none;
+}
+
+#pass-form {
+  border-color: var(--container-border);
+  background-color: var(--container-bg);
+  box-shadow: 0px 5px 4px var(--container-border);
+}
+
+#admin-navbar {
+  background: linear-gradient(to bottom, #5098c7, #4599de);
+  box-shadow: 0px 2px 4px #396181;
+}
+
+#requests-display {
+  box-shadow: 0px 3px 2px #5abbfc;
 }
