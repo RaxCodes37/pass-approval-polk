@@ -5,6 +5,7 @@ export default function SignUpForm() {
     <form
       action={signUpAction}
       className="mt-30 w-80 h-fit sm:w-100 border-2 border-[#5abbfc] bg-[#2b5d86] rounded-md flex flex-col items-center text-center"
+      id="auth-form"
     >
       <h1 className="text-xl font-semibold sm:text-2xl w-full py-3 rounded-t-sm bg-[#4F98C8] shadow-1md">
         Sign Up

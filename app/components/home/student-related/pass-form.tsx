@@ -38,13 +38,13 @@ export default function PassForm({ studentName, setMessage }: Props) {
 
   return (
     <div
-      className="w-fit h-fit sm:w-80 mt-30 border-2 rounded-md flex flex-col items-center px-5 py-3 pb-5"
+      className="w-fit h-fit sm:w-80 mt-30 border-2 rounded-md flex flex-col items-center border-[#5abbfc] bg-[#2b5d86]"
       id="pass-form"
     >
-      <h1 className="text-xl sm:text-2xl font-bold">Request a Pass</h1>
+      <h1 className="text-xl font-semibold sm:text-2xl w-full py-3 rounded-t-sm bg-[#4F98C8] shadow-1md text-center">Request a Pass</h1>
       <form
         onSubmit={sendPassRequestFunction}
-        className="mt-2 flex flex-col items-center gap-2"
+        className="mt-2 flex flex-col items-center gap-2 px-5 py-2.5 pb-5"
       >
         <input
           type="text"
@@ -61,7 +61,7 @@ export default function PassForm({ studentName, setMessage }: Props) {
           onChange={(e) => setReason(e.target.value)}
         />
         <select
-          className="py-1 px-2 bg-[#2b397b] border-2 border-[#4556a7] rounded-md text-[1.2rem]"
+          className="border rounded-md border-[#5abbfc] bg-[#39769f] p-2 text-xl"
           value={destination}
           onChange={(e) => setDestination(e.target.value)}
           required
