@@ -1,0 +1,1 @@
+ALTER TABLE "passes" ADD COLUMN "pass_status" text DEFAULT 'not approved';
