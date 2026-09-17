@@ -8,7 +8,7 @@ export const passesTable = pgTable("passes", {
   destination: text("destination").notNull(),
   reason: text("reason_for_pass").notNull(),
   timeOfDeparture: timestamp("time_of_departure").defaultNow().notNull(),
-  timeOfReturn: timestamp("time_of_return").notNull(),
+  timeOfReturn: timestamp("time_of_return"),
 })
 
 export const user = pgTable("user", {
@@ -18,8 +18,6 @@ export const user = pgTable("user", {
   emailVerified: boolean("email_verified").default(false).notNull(),
   image: text("image"),
   role: text("user_role").notNull().default("member"),
-  // ! Need to add a function that checks different email types from each other so that if an admin logs-in 
-  // ! The program checks the admin's email and the admin will have his privileges instantly.
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
