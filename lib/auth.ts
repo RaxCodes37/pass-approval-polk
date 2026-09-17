@@ -9,12 +9,14 @@ export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg",
   }),
-  // emailAndPassword: { Not sure if this should be added },
+  emailAndPassword: {
+    enabled: true,
+  },
   plugins: [nextCookies()],
   pages: {
-    signIn: "/signin",
+    signIn: "/sign-in",
+    signUp: "/sign-up"
   },
-  // socialProviders: { Will add Microsoft OAuth },
 });
 export const getSession = async () =>
   auth.api.getSession({
