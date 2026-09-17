@@ -8,6 +8,7 @@ export default async function Home() {
   const userName: string = session.user.name;
 
   if (session.user.email.includes("@mypolkschools.net")) redirect("/student");
-  else if (session.user.email.includes("@mypolkeducator.net"))
+  else if (session.user.email.includes("@polk-fl.net"))
     redirect(`/admin/${userName}`);
+  else redirect("/sign-in");
 }
