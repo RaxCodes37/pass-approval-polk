@@ -4,3 +4,7 @@ export interface RequestingPass {
   destination: string,
   reason: string,
 }
+
+export interface getPassRequests {
+  teacherName: string, //unique id
+}
