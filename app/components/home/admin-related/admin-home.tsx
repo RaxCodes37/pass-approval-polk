@@ -1,7 +1,11 @@
 import AdminNavbar from "./admin-navbar";
 import DisplayRequests from "./display-requests";
 
-export default function AdminHome() {
+interface Props {
+  teacherName: string
+}
+
+export default function AdminHome({teacherName}: Props) {
   return (
     <div>
       <AdminNavbar />
