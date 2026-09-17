@@ -22,6 +22,13 @@
       "when": 1789444195995,
       "tag": "0002_happy_zeigeist",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1789620200871,
+      "tag": "0003_volatile_alice",
+      "breakpoints": true
     }
   ]
 }

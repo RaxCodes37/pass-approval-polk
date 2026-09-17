@@ -1,0 +1,1 @@
+ALTER TABLE "passes" ALTER COLUMN "time_of_return" DROP NOT NULL;
