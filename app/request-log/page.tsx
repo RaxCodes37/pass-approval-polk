@@ -1,11 +1,20 @@
-import React from 'react'
-import AdminNavbar from '../components/home/admin-related/admin-navbar';
+import { getSession } from "@/lib/auth";
+import AdminNavbar from "../components/home/admin-related/admin-navbar";
+import { redirect } from "next/navigation";
+import RequestLogClient from "../components/request-log/request-log-client";
 
-export default function RequestLogPage() {
+export default async function RequestLogPage() {
+  const session = await getSession();
+  if (!session) redirect("/sign-in");
+
+  const userName = session.user.name;
+
   return (
     <div>
       <AdminNavbar />
-      Here, all of the past pass requests will be shown, along with their status (submitted, etc)
+      <div className="flex justify-center">
+        <RequestLogClient teacherName={userName}/>
+      </div>
     </div>
-  )
+  );
 }
