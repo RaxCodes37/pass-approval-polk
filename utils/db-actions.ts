@@ -28,7 +28,7 @@ export const getPassRequest = async (teacherName: string) => {
     .where(
       and(
         eq(passesTable.classDepartedFrom, teacherName),
-        eq(passesTable.status, "not approved"),
+        eq(passesTable.status, "pending"),
       ),
     );
 
