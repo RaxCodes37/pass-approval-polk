@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import AdminNavbar from "./admin-navbar";
 import DisplayRequests from "./display-requests";
-import { acceptRequest, denyRequest, getPassRequest } from "@/utils/db-actions";
+import { acceptRequest, denyRequest, getActiveRequest, getPassRequest } from "@/utils/db-actions";
 import { PassRequest } from "@/utils/interfaces";
+import ActivePass from "./active-pass";
 
 interface Props {
   teacherName: string;
@@ -12,10 +13,12 @@ interface Props {
 
 export default function AdminHome({ teacherName }: Props) {
   const [requests, setRequests] = useState<PassRequest[]>([]);
+  const [activeRequests, setActiveRequests] = useState<PassRequest[]>([]);
 
   useEffect(() => {
     const getStudentRequests = async () => {
       setRequests(await getPassRequest(teacherName));
+      setActiveRequests(await getActiveRequest(teacherName));
     };
 
     getStudentRequests();
@@ -45,8 +48,10 @@ export default function AdminHome({ teacherName }: Props) {
     <div>
       <AdminNavbar />
 
-      <div className="flex justify-center">
+      <div className="flex flex-col items-center">
         <DisplayRequests requests={requests} setRequests={setRequests} acceptRequestFunction={acceptRequestFunction} denyRequestFunction={denyRequestFunction}/>
+
+        <ActivePass activeRequests={activeRequests} setActiveRequests={setActiveRequests}/>
       </div>
     </div>
   );

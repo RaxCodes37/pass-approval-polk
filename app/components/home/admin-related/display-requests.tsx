@@ -4,11 +4,16 @@ import React from "react";
 interface Props {
   requests: PassRequest[];
   setRequests: React.Dispatch<React.SetStateAction<PassRequest[]>>;
-  acceptRequestFunction: (passId: string) => void
-  denyRequestFunction: (passId: string) => void
+  acceptRequestFunction: (passId: string) => void;
+  denyRequestFunction: (passId: string) => void;
 }
 
-export default function DisplayRequests({ requests, setRequests, acceptRequestFunction, denyRequestFunction }: Props) {
+export default function DisplayRequests({
+  requests,
+  setRequests,
+  acceptRequestFunction,
+  denyRequestFunction,
+}: Props) {
   return (
     <div
       className="mt-30 w-80 h-fit sm:w-100 border-2 border-[#5abbfc] bg-[#2b5d86] rounded-md flex flex-col items-center text-center"
@@ -18,9 +23,6 @@ export default function DisplayRequests({ requests, setRequests, acceptRequestFu
         All Requests
       </h1>
       <div className="min-h-80 h-fit w-full p-2 flex flex-col gap-2">
-        {
-          
-        }
         {requests.map((request) => (
           <div
             key={request.passId}
@@ -44,8 +46,18 @@ export default function DisplayRequests({ requests, setRequests, acceptRequestFu
             </div>
 
             <div className="mt-2 mb-1 flex justify-between gap-4 self-center w-[60%]">
-              <button className="accept-request-btn" onClick={() => acceptRequestFunction(request.passId)}>Accept</button>
-              <button className="deny-request-btn" onClick={() => denyRequestFunction(request.passId)}>Deny</button>
+              <button
+                className="accept-request-btn"
+                onClick={() => acceptRequestFunction(request.passId)}
+              >
+                Accept
+              </button>
+              <button
+                className="deny-request-btn"
+                onClick={() => denyRequestFunction(request.passId)}
+              >
+                Deny
+              </button>
             </div>
           </div>
         ))}
