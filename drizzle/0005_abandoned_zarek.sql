@@ -1,0 +1,1 @@
+ALTER TABLE "passes" ALTER COLUMN "pass_status" SET DEFAULT 'pending';
