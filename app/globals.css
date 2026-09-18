@@ -42,3 +42,28 @@ input:focus {
 #requests-display {
   box-shadow: 0px 3px 2px #5abbfc;
 }
+
+#requests-display .accept-request-btn, #requests-display .deny-request-btn {
+  padding: 2px 4px;
+  font-weight: 550;
+}
+
+.accept-request-btn {
+  background-color: #4bb252;
+  border-color: #6ee976;
+}
+
+.accept-request-btn:hover {
+  background-color: #419246;
+  border-color: #69ff73;
+}
+
+.deny-request-btn {
+  background-color: #d04747;
+  border-color: #ff6f6f;
+}
+
+.deny-request-btn:hover {
+  background-color: #933939;
+  border-color: #ff5454;
+}
