@@ -15,11 +15,11 @@ export default function ActivePass({
   console.log(activeRequests);
 
   return (
-    <div className="mt-20 text-center">
+    <div className="mt-20 w-100 text-center">
       <h1 className="text-xl font-semibold sm:text-2xl w-full py-3 rounded-t-sm bg-[#4F98C8] border-2 border-b border-[#64bffb]">
         Active Pass
       </h1>
-      <table className="border-2 border-[#64bffb] bg-[#4F98C8] border-t-0 w-90 text-center">
+      <table className="border-2 border-[#64bffb] bg-[#4F98C8] border-t-0 w-100 text-center">
         <thead>
           <tr className="text-center p-2">
             <th className="border border-[#64bffb] border-t-0">Student Name</th>
