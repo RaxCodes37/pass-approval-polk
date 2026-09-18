@@ -2,7 +2,7 @@
 
 import { db } from "@/lib";
 import { passesTable } from "@/schema";
-import { getPassRequests, RequestingPass } from "./interfaces";
+import { PassRequest, RequestingPass } from "./interfaces";
 import { and, eq } from "drizzle-orm";
 
 export const sendPassRequest = async ({
@@ -21,7 +21,7 @@ export const sendPassRequest = async ({
   return newRequest as RequestingPass[];
 };
 
-export const getPassRequest = async ({ teacherName }: getPassRequests) => {
+export const getPassRequest = async (teacherName: string) => {
   const requests = await db
     .select()
     .from(passesTable)
@@ -32,5 +32,19 @@ export const getPassRequest = async ({ teacherName }: getPassRequests) => {
       ),
     );
 
-  return requests as RequestingPass[];
+  return requests as PassRequest[];
+};
+
+export const acceptRequest = async (passId: string) => {
+  await db
+    .update(passesTable)
+    .set({ status: "approved" })
+    .where(eq(passesTable.passId, passId));
+};
+
+export const denyRequest = async (passId: string) => {
+  await db
+    .update(passesTable)
+    .set({ status: "denied" })
+    .where(eq(passesTable.passId, passId));
 };
