@@ -9,7 +9,7 @@ export const passesTable = pgTable("passes", {
   reason: text("reason_for_pass").notNull(),
   timeOfDeparture: timestamp("time_of_departure").defaultNow().notNull(),
   timeOfReturn: timestamp("time_of_return"),
-  status: text("pass_status").default("not approved")
+  status: text("pass_status").default("pending")
 })
 
 export const user = pgTable("user", {
