@@ -35,6 +35,15 @@ export const getPassRequest = async (teacherName: string) => {
   return requests as PassRequest[];
 };
 
+export const getAllRequests = async (teacherName: string) => {
+  const requests = await db
+    .select()
+    .from(passesTable)
+    .where(eq(passesTable.classDepartedFrom, teacherName));
+
+  return requests as PassRequest[];
+};
+
 export const acceptRequest = async (passId: string) => {
   await db
     .update(passesTable)
