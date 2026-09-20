@@ -12,8 +12,6 @@ export default function ActivePass({
   activeRequests,
   setActiveRequests,
 }: Props) {
-  console.log(activeRequests);
-
   return (
     <div className="mt-20 w-82.5 text-center">
       <h1 className="text-xl font-semibold sm:text-2xl w-full py-3 rounded-t-sm bg-[#4F98C8] border-2 border-b border-[#64bffb]">

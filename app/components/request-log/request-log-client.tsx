@@ -20,8 +20,6 @@ export default function RequestLogClient({teacherName}: Props) {
     getAllRequestsFunction();
   }, [])
   
-  console.log(allRequests)
-  
   return (
     <div>
       <DisplayAllRequests allRequests={allRequests}/>
