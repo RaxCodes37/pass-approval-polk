@@ -6,6 +6,7 @@ import DisplayRequests from "./display-requests";
 import { acceptRequest, denyRequest, getActiveRequest, getPassRequest } from "@/utils/db-actions";
 import { PassRequest } from "@/utils/interfaces";
 import ActivePass from "./active-pass";
+import { socket } from "@/lib/socket-client";
 
 interface Props {
   teacherName: string;
@@ -21,7 +22,17 @@ export default function AdminHome({ teacherName }: Props) {
       setActiveRequests(await getActiveRequest(teacherName));
     };
 
+    socket.on("pass-request", (data) => {
+      setRequests((prev) => [...prev, data]);
+    })
+
+    socket.emit("join-class", teacherName)
+  
     getStudentRequests();
+
+    return () => {
+      socket.off("pass-request");
+    }
   }, []);
 
   const acceptRequestFunction = async (passId: string) => {

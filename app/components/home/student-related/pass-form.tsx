@@ -1,5 +1,6 @@
 "use client";
 
+import { socket } from "@/lib/socket-client";
 import { sendPassRequest } from "@/utils/db-actions";
 import { RequestingPass } from "@/utils/interfaces";
 import React, { useState } from "react";
@@ -26,6 +27,7 @@ export default function PassForm({ studentName, setMessage }: Props) {
 
     try {
       await sendPassRequest(info);
+      socket.emit("pass-request", info);
 
       setMessage("Pass request sent successfully!");
     } catch (error) {
