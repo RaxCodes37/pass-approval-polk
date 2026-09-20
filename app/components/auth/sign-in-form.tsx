@@ -32,7 +32,7 @@ export default function SignInForm() {
         type="submit"
         className="my-3 border rounded-md border-[#5abbfc] bg-[#39769f] px-2 py-1"
       >
-        Sign Up
+        Sign In
       </button>
     </form>
   );
