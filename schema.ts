@@ -7,8 +7,8 @@ export const passesTable = pgTable("passes", {
   classDepartedFrom: text("class_student_departed_from").notNull(),
   destination: text("destination").notNull(),
   reason: text("reason_for_pass").notNull(),
-  timeOfDeparture: timestamp("time_of_departure").defaultNow().notNull(),
-  timeOfReturn: timestamp("time_of_return"),
+  timeOfDeparture: timestamp("time_of_departure", { mode: 'string' }).defaultNow().notNull(),
+  timeOfReturn: timestamp("time_of_return", { mode: 'string' }),
   status: text("pass_status").default("pending")
 })
 

@@ -11,7 +11,7 @@ export interface PassRequest {
   classDepartedFrom: string;
   destination: string;
   reason: string;
-  timeOfDeparture: Date;
-  timeOfReturn: Date;
+  timeOfDeparture: string;
+  timeOfReturn: string;
   status: string;
 }
