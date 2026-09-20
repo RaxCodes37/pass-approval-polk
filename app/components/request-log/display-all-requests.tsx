@@ -15,11 +15,8 @@ export default function displayAllRequests({ allRequests }: Props) {
           <th className="p-2 border border-[#64bffb]">Destination</th>
           <th className="p-2 border border-[#64bffb]">Reason</th>
           <th className="p-2 border border-[#64bffb]">Status</th>
-          {
-            // ! This is giving a typing error, will fix later
-            // <th className="p-2 border border-[#64bffb]">Departure Time</th>
-            // <th className="p-2 border border-[#64bffb]">Return Time</th>
-          }
+          <th className="p-2 border border-[#64bffb]">Departure Time</th>
+          <th className="p-2 border border-[#64bffb]">Return Time</th>
         </tr>
       </thead>
       <tbody>
@@ -37,15 +34,18 @@ export default function displayAllRequests({ allRequests }: Props) {
             <td className="border border-[#64bffb] bg-[#37739b] p-2">
               {request.status}
             </td>
-            {
-              // ! Part of typing error.
-              // <td className="border border-[#64bffb] bg-[#37739b] p-2">
-              //   {request.timeOfDeparture}
-              // </td>
-              // <td className="border border-[#64bffb] bg-[#37739b]p-2">
-              //   {request.timeOfReturn}
-              // </td>
-            }
+
+            <td className="border border-[#64bffb] bg-[#37739b] p-2">
+              {request.timeOfDeparture.substring(0, 16)}
+            </td>
+
+            {request.timeOfReturn === null ? (
+              <td className="border border-[#64bffb] bg-[#37739b] p-2">Null</td>
+            ) : (
+              <td className="border border-[#64bffb] bg-[#37739b] p-2">
+                {request.timeOfReturn.substring(0, 16)}
+              </td>
+            )}
           </tr>
         ))}
       </tbody>

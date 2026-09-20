@@ -21,14 +21,13 @@ export default function ActivePass({
         <thead>
           <tr className="text-center p-2">
             <th className="border border-[#64bffb] border-t-0">Student Name</th>
-            <th className="p-2 border border-[#64bffb] border-t-0">Destination</th>
+            <th className="p-2 border border-[#64bffb] border-t-0">
+              Destination
+            </th>
             <th className="p-2 border border-[#64bffb] border-t-0">Reason</th>
             <th className="p-2 border border-[#64bffb] border-t-0">Status</th>
-            {
-              // ! Same typing error as the one at 'display-all-requests.tsx', will fix later.
-              // <th className="p-2 border border-[#64bffb]">Departure Time</th>
-              // <th className="p-2 border border-[#64bffb]">Return Time</th>
-            }
+            <th className="p-2 border border-[#64bffb]">Departure Time</th>
+            <th className="p-2 border border-[#64bffb]">Return Time</th>
           </tr>
         </thead>
         <tbody>
@@ -46,15 +45,18 @@ export default function ActivePass({
               <td className="border border-[#64bffb] bg-[#37739b] p-2">
                 {request.status}
               </td>
-              {
-                // ! Part of typing error.
-                // <td className="border border-[#64bffb] bg-[#37739b] p-2">
-                //   {request.timeOfDeparture}
-                // </td>
-                // <td className="border border-[#64bffb] bg-[#37739b]p-2">
-                //   {request.timeOfReturn}
-                // </td>
-              }
+              <td className="border border-[#64bffb] bg-[#37739b] p-2">
+                {request.timeOfDeparture.substring(0, 16)}
+              </td>
+              {request.timeOfReturn === null ? (
+                <td className="border border-[#64bffb] bg-[#37739b] p-2">
+                  Null
+                </td>
+              ) : (
+                <td className="border border-[#64bffb] bg-[#37739b] p-2">
+                  {request.timeOfReturn.substring(0, 16)}
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
