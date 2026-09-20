@@ -8,7 +8,7 @@ interface Props {
 
 export default function displayAllRequests({ allRequests }: Props) {
   return (
-    <table className="border-3 border-[#64bffb] bg-[#4F98C8] w-70 sm:w-90 text-center mt-5">
+    <table className="border-3 border-[#64bffb] bg-[#4F98C8] w-70 sm:w-90 text-center mt-20">
       <thead>
         <tr className="text-center p-2">
           <th className="border border-[#64bffb]">Student Name</th>
