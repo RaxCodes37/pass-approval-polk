@@ -25,7 +25,7 @@ export default function DisplayRequests({
       <div className="min-h-80 h-fit w-full p-2 flex flex-col gap-2">
         {requests.map((request) => (
           <div
-            key={request.passId}
+            key={`${request.studentName}-${request.classDepartedFrom}-${request.destination}`}
             className="flex flex-col border border-[#64bffb] bg-[#4F98C8] px-2 py-1 rounded-md"
           >
             <div className="flex justify-between">

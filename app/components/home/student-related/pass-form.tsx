@@ -7,7 +7,7 @@ import React, { useState } from "react";
 
 interface Props {
   studentName: string;
-  setMessage: React.Dispatch<React.SetStateAction<string>>
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function PassForm({ studentName, setMessage }: Props) {
@@ -29,6 +29,9 @@ export default function PassForm({ studentName, setMessage }: Props) {
       await sendPassRequest(info);
       socket.emit("pass-request", info);
 
+      setClassDepartedFrom("");
+      setDestination("");
+      setReason("");
       setMessage("Pass request sent successfully!");
     } catch (error) {
       console.error(error);
@@ -43,7 +46,9 @@ export default function PassForm({ studentName, setMessage }: Props) {
       className="w-fit h-fit sm:w-80 mt-30 border-2 rounded-md flex flex-col items-center border-[#5abbfc] bg-[#2b5d86]"
       id="pass-form"
     >
-      <h1 className="text-xl font-semibold sm:text-2xl w-full py-3 rounded-t-sm bg-[#4F98C8] shadow-1md text-center">Request a Pass</h1>
+      <h1 className="text-xl font-semibold sm:text-2xl w-full py-3 rounded-t-sm bg-[#4F98C8] shadow-1md text-center">
+        Request a Pass
+      </h1>
       <form
         onSubmit={sendPassRequestFunction}
         className="mt-2 flex flex-col items-center gap-2 px-5 py-2.5 pb-5"
