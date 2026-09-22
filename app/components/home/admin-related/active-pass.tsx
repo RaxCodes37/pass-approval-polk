@@ -13,8 +13,8 @@ export default function ActivePass({
   setActiveRequests,
 }: Props) {
   return (
-    <div className="mt-20 w-82.5 sm:w-124 text-center">
-      <h1 className="text-xl font-semibold sm:text-2xl w-full py-3 rounded-t-sm bg-[#4F98C8] border-2 border-b border-[#64bffb]">
+    <div className="mt-20 w-78 sm:w-124 text-center">
+      <h1 className="text-xl font-semibold sm:text-2xl w-117.25 py-3 rounded-t-sm bg-[#4F98C8] border-2 border-b border-[#64bffb]">
         Active Pass
       </h1>
       <table className="border-2 border-[#64bffb] bg-[#4F98C8] border-t-0 w-82.5 text-center">
