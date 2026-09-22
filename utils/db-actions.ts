@@ -55,19 +55,39 @@ export const getActiveRequest = async (teacherName: string) => {
       ),
     );
 
-  return activeRequest as PassRequest[]
+  return activeRequest as PassRequest[];
 };
 
-export const acceptRequest = async (passId: string) => {
+export const acceptRequest = async (
+  studentName: string,
+  classDepartedFrom: string,
+  destination: string,
+) => {
   await db
     .update(passesTable)
     .set({ status: "approved" })
-    .where(eq(passesTable.passId, passId));
+    .where(
+      and(
+        eq(passesTable.studentName, studentName),
+        eq(passesTable.classDepartedFrom, classDepartedFrom),
+        eq(passesTable.destination, destination),
+      ),
+    );
 };
 
-export const denyRequest = async (passId: string) => {
+export const denyRequest = async (
+  studentName: string,
+  classDepartedFrom: string,
+  destination: string,
+) => {
   await db
     .update(passesTable)
     .set({ status: "denied" })
-    .where(eq(passesTable.passId, passId));
+    .where(
+      and(
+        eq(passesTable.studentName, studentName),
+        eq(passesTable.classDepartedFrom, classDepartedFrom),
+        eq(passesTable.destination, destination),
+      ),
+    );
 };

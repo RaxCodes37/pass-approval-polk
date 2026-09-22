@@ -4,8 +4,8 @@ import React from "react";
 interface Props {
   requests: PassRequest[];
   setRequests: React.Dispatch<React.SetStateAction<PassRequest[]>>;
-  acceptRequestFunction: (passId: string) => void;
-  denyRequestFunction: (passId: string) => void;
+  acceptRequestFunction: (studentName: string, classDepartedFrom: string, destination: string) => void;
+  denyRequestFunction: (studentName: string, classDepartedFrom: string, destination: string) => void;
 }
 
 export default function DisplayRequests({
@@ -48,13 +48,13 @@ export default function DisplayRequests({
             <div className="mt-2 mb-1 flex justify-between gap-4 self-center w-[60%]">
               <button
                 className="accept-request-btn"
-                onClick={() => acceptRequestFunction(request.passId)}
+                onClick={() => acceptRequestFunction(request.studentName, request.classDepartedFrom, request.destination)}
               >
                 Accept
               </button>
               <button
                 className="deny-request-btn"
-                onClick={() => denyRequestFunction(request.passId)}
+                onClick={() => denyRequestFunction(request.studentName, request.classDepartedFrom, request.destination)}
               >
                 Deny
               </button>

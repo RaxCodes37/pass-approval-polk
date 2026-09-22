@@ -3,7 +3,12 @@
 import { useEffect, useState } from "react";
 import AdminNavbar from "./admin-navbar";
 import DisplayRequests from "./display-requests";
-import { acceptRequest, denyRequest, getActiveRequest, getPassRequest } from "@/utils/db-actions";
+import {
+  acceptRequest,
+  denyRequest,
+  getActiveRequest,
+  getPassRequest,
+} from "@/utils/db-actions";
 import { PassRequest } from "@/utils/interfaces";
 import ActivePass from "./active-pass";
 import { socket } from "@/lib/socket-client";
@@ -24,32 +29,54 @@ export default function AdminHome({ teacherName }: Props) {
 
     socket.on("pass-request", (data) => {
       setRequests((prev) => [...prev, data]);
-    })
+    });
 
-    socket.emit("join-class", teacherName)
-  
+    socket.emit("join-class", teacherName);
+
     getStudentRequests();
 
     return () => {
       socket.off("pass-request");
-    }
+    };
   }, []);
 
-  const acceptRequestFunction = async (passId: string) => {
-    setRequests(requests.filter((r) => r.passId !== passId));
+  const acceptRequestFunction = async (
+    studentName: string,
+    classDepartedFrom: string,
+    destination: string,
+  ) => {
+    setRequests(
+      requests.filter(
+        (r) =>
+          r.studentName !== studentName &&
+          r.classDepartedFrom !== classDepartedFrom &&
+          r.destination !== destination,
+      ),
+    );
 
     try {
-      await acceptRequest(passId);
+      await acceptRequest(studentName, classDepartedFrom, destination);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const denyRequestFunction = async (passId: string) => {
-    setRequests(requests.filter((r) => r.passId !== passId));
+  const denyRequestFunction = async (
+    studentName: string,
+    classDepartedFrom: string,
+    destination: string,
+  ) => {
+    setRequests(
+      requests.filter(
+        (r) =>
+          r.studentName !== studentName &&
+          r.classDepartedFrom !== classDepartedFrom &&
+          r.destination !== destination,
+      ),
+    );
 
     try {
-      await denyRequest(passId);
+      await denyRequest(studentName, classDepartedFrom, destination);
     } catch (error) {
       console.error(error);
     }
@@ -60,9 +87,17 @@ export default function AdminHome({ teacherName }: Props) {
       <AdminNavbar />
 
       <div className="flex flex-col items-center">
-        <DisplayRequests requests={requests} setRequests={setRequests} acceptRequestFunction={acceptRequestFunction} denyRequestFunction={denyRequestFunction}/>
+        <DisplayRequests
+          requests={requests}
+          setRequests={setRequests}
+          acceptRequestFunction={acceptRequestFunction}
+          denyRequestFunction={denyRequestFunction}
+        />
 
-        <ActivePass activeRequests={activeRequests} setActiveRequests={setActiveRequests}/>
+        <ActivePass
+          activeRequests={activeRequests}
+          setActiveRequests={setActiveRequests}
+        />
       </div>
     </div>
   );
