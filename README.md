@@ -2,7 +2,7 @@
 
 ### Description
 
-Application made for my county schools to implement online passes.
+Application made for my county's schools to implement online passes.
 Features an admin/teacher and student page.
 
 Helps teachers collect their student's pass information and store it in the same place.
