@@ -21,16 +21,33 @@ app.prepare().then(() => {
     socket.on(
       "pass-request",
       ({ studentName, classDepartedFrom, destination, reason }) => {
-        console.log(
-          `${studentName} sent a request to go from ${classDepartedFrom}'s class to ${destination} because ${reason}`
-        );
+        socket.to(classDepartedFrom).emit("pass-request", {
+          classDepartedFrom,
+          studentName,
+          destination,
+          reason,
+        });
+      },
+    );
+
+    socket.on(
+      "new-active-request",
+      ({
+        studentName,
+        classDepartedFrom,
+        destination,
+        reason,
+        timeOfDeparture,
+      }) => {
+        console.log(`${studentName}, ${classDepartedFrom}, ${destination}, ${reason}, ${timeOfDeparture}`)
         socket
           .to(classDepartedFrom)
-          .emit("pass-request", {
-            classDepartedFrom,
+          .emit("new-active-request", {
             studentName,
+            classDepartedFrom,
             destination,
             reason,
+            timeOfDeparture,
           });
       },
     );

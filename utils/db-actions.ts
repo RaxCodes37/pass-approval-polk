@@ -58,6 +58,8 @@ export const getActiveRequest = async (teacherName: string) => {
   return activeRequest as PassRequest[];
 };
 
+export const getSpecialActiveRequest = async () => {}
+
 export const acceptRequest = async (
   studentName: string,
   classDepartedFrom: string,

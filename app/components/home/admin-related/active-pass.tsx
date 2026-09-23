@@ -1,7 +1,8 @@
 "use client";
 
+import { socket } from "@/lib/socket-client";
 import { PassRequest } from "@/utils/interfaces";
-import React from "react";
+import React, { useEffect } from "react";
 
 interface Props {
   activeRequests: PassRequest[];
@@ -12,6 +13,16 @@ export default function ActivePass({
   activeRequests,
   setActiveRequests,
 }: Props) {
+  useEffect(() => {
+    socket.on("new-active-request", (data) => {
+      setActiveRequests([data]);
+    });
+
+    return () => {
+      socket.off("new-active-request");
+    }
+  }, [])
+
   return (
     <div className="mt-20 w-78 sm:w-130 text-center">
       <h1 className="text-xl font-semibold sm:text-2xl w-ful py-3 rounded-t-sm bg-[#4F98C8] border-2 border-b border-[#64bffb]">
