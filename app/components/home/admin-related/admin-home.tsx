@@ -59,6 +59,8 @@ export default function AdminHome({ teacherName }: Props) {
       await acceptRequest(studentName, classDepartedFrom, destination);
     } catch (error) {
       console.error(error);
+    } finally {
+      location.reload();
     }
   };
 
