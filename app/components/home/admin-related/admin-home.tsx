@@ -12,7 +12,6 @@ import {
 import { PassRequest } from "@/utils/interfaces";
 import ActivePass from "./active-pass";
 import { socket } from "@/lib/socket-client";
-import { string } from "better-auth";
 
 interface Props {
   teacherName: string;
@@ -45,7 +44,6 @@ export default function AdminHome({ teacherName }: Props) {
     studentName: string,
     classDepartedFrom: string,
     destination: string,
-    status: string
   ) => {
     setRequests(
       requests.filter(
@@ -69,7 +67,6 @@ export default function AdminHome({ teacherName }: Props) {
     studentName: string,
     classDepartedFrom: string,
     destination: string,
-    status: string
   ) => {
     setRequests(
       requests.filter(
@@ -81,7 +78,7 @@ export default function AdminHome({ teacherName }: Props) {
     );
 
     try {
-      await denyRequest(studentName, classDepartedFrom, destination, status);
+      await denyRequest(studentName, classDepartedFrom, destination);
     } catch (error) {
       console.error(error);
     }

@@ -81,7 +81,6 @@ export const denyRequest = async (
   studentName: string,
   classDepartedFrom: string,
   destination: string,
-  status: string
 ) => {
   await db
     .update(passesTable)
