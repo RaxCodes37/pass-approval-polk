@@ -38,7 +38,6 @@ export default function AdminHome({ teacherName }: Props) {
 
     return () => {
       socket.off("pass-request");
-      socket.off("new-active-request");
     };
   }, []);
 
@@ -46,7 +45,6 @@ export default function AdminHome({ teacherName }: Props) {
     studentName: string,
     classDepartedFrom: string,
     destination: string,
-    reason: string,
   ) => {
     setRequests(
       requests.filter(
@@ -57,19 +55,8 @@ export default function AdminHome({ teacherName }: Props) {
       ),
     );
 
-    const newActiveRequest = {
-      studentName,
-      classDepartedFrom,
-      destination,
-      reason,
-      //Need to find right Date().get function for this.
-      timeOfDeparture: new Date().getDate().toString()
-    };
-
     try {
       await acceptRequest(studentName, classDepartedFrom, destination);
-
-      socket.emit("new-active-request", newActiveRequest);
     } catch (error) {
       console.error(error);
     }
@@ -110,7 +97,6 @@ export default function AdminHome({ teacherName }: Props) {
 
         <ActivePass
           activeRequests={activeRequests}
-          setActiveRequests={setActiveRequests}
         />
       </div>
     </div>

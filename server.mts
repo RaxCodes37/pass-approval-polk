@@ -29,28 +29,6 @@ app.prepare().then(() => {
         });
       },
     );
-
-    socket.on(
-      "new-active-request",
-      ({
-        studentName,
-        classDepartedFrom,
-        destination,
-        reason,
-        timeOfDeparture,
-      }) => {
-        console.log(`${studentName}, ${classDepartedFrom}, ${destination}, ${reason}, ${timeOfDeparture}`)
-        socket
-          .to(classDepartedFrom)
-          .emit("new-active-request", {
-            studentName,
-            classDepartedFrom,
-            destination,
-            reason,
-            timeOfDeparture,
-          });
-      },
-    );
   });
 
   httpServer
