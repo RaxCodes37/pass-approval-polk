@@ -1,14 +1,33 @@
 "use client";
 
+import { endActivePass } from "@/utils/db-actions";
 import { PassRequest } from "@/utils/interfaces";
+import React, { useState } from "react";
 
 interface Props {
   activeRequests: PassRequest[];
+  setActiveRequests: React.Dispatch<React.SetStateAction<PassRequest[]>>;
 }
 
 export default function ActivePass({
   activeRequests,
+  setActiveRequests,
 }: Props) {
+  const [message, setMessage] = useState<string>("");
+
+  const endActivePassFunction = async (passId: string) => {
+    setActiveRequests(activeRequests.filter((aR) => aR.passId !== passId));
+
+    try {
+      await endActivePass(passId);
+
+      setMessage("Pass ended successfully!");
+    } catch (error) {
+      console.error(error);
+      setMessage("Error while ending active pass, try again later");
+    }
+  };
+
   return (
     <div className="mt-20 w-78 sm:w-130 text-center">
       <h1 className="text-xl font-semibold sm:text-2xl w-ful py-3 rounded-t-sm bg-[#4F98C8] border-2 border-b border-[#64bffb]">
@@ -47,7 +66,9 @@ export default function ActivePass({
               </td>
               {request.timeOfReturn === null ? (
                 <td className="border border-[#64bffb] bg-[#37739b] p-2">
-                  Null
+                  <button onClick={() => endActivePassFunction(request.passId)}>
+                    End
+                  </button>
                 </td>
               ) : (
                 <td className="border border-[#64bffb] bg-[#37739b] p-2">
@@ -58,6 +79,14 @@ export default function ActivePass({
           ))}
         </tbody>
       </table>
+
+      {message === "" ? (
+        <div></div>
+      ) : (
+        <div className="mt-10">
+          <p className="font-bold text-xl">{message}</p>
+        </div>
+      )}
     </div>
   );
 }

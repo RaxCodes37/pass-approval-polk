@@ -45,6 +45,7 @@ export default function AdminHome({ teacherName }: Props) {
     studentName: string,
     classDepartedFrom: string,
     destination: string,
+    status: string
   ) => {
     setRequests(
       requests.filter(
@@ -56,7 +57,7 @@ export default function AdminHome({ teacherName }: Props) {
     );
 
     try {
-      await acceptRequest(studentName, classDepartedFrom, destination);
+      await acceptRequest(studentName, classDepartedFrom, destination, status);
     } catch (error) {
       console.error(error);
     } finally {
@@ -68,6 +69,7 @@ export default function AdminHome({ teacherName }: Props) {
     studentName: string,
     classDepartedFrom: string,
     destination: string,
+    status: string
   ) => {
     setRequests(
       requests.filter(
@@ -79,7 +81,7 @@ export default function AdminHome({ teacherName }: Props) {
     );
 
     try {
-      await denyRequest(studentName, classDepartedFrom, destination);
+      await denyRequest(studentName, classDepartedFrom, destination, status);
     } catch (error) {
       console.error(error);
     }
@@ -99,6 +101,7 @@ export default function AdminHome({ teacherName }: Props) {
 
         <ActivePass
           activeRequests={activeRequests}
+          setActiveRequests={setActiveRequests}
         />
       </div>
     </div>

@@ -3,7 +3,7 @@
 import { db } from "@/lib";
 import { passesTable } from "@/schema";
 import { PassRequest, RequestingPass } from "./interfaces";
-import { and, eq } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 
 export const sendPassRequest = async ({
   studentName,
@@ -62,6 +62,7 @@ export const acceptRequest = async (
   studentName: string,
   classDepartedFrom: string,
   destination: string,
+  status: string
 ) => {
   await db
     .update(passesTable)
@@ -71,6 +72,7 @@ export const acceptRequest = async (
         eq(passesTable.studentName, studentName),
         eq(passesTable.classDepartedFrom, classDepartedFrom),
         eq(passesTable.destination, destination),
+        eq(passesTable.status, "pending"),
       ),
     );
 };
@@ -79,6 +81,7 @@ export const denyRequest = async (
   studentName: string,
   classDepartedFrom: string,
   destination: string,
+  status: string
 ) => {
   await db
     .update(passesTable)
@@ -88,6 +91,14 @@ export const denyRequest = async (
         eq(passesTable.studentName, studentName),
         eq(passesTable.classDepartedFrom, classDepartedFrom),
         eq(passesTable.destination, destination),
+        eq(passesTable.status, "pending"),
       ),
     );
+};
+
+export const endActivePass = async (passId: string) => {
+  await db
+    .update(passesTable)
+    .set({ status: "approved (inactive)", timeOfReturn: sql`now()` })
+    .where(eq(passesTable.passId, passId));
 };
