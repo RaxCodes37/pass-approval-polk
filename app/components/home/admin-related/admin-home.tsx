@@ -55,7 +55,7 @@ export default function AdminHome({ teacherName }: Props) {
     );
 
     try {
-      await acceptRequest(studentName, classDepartedFrom, destination, status);
+      await acceptRequest(studentName, classDepartedFrom, destination);
     } catch (error) {
       console.error(error);
     } finally {
@@ -91,7 +91,6 @@ export default function AdminHome({ teacherName }: Props) {
       <div className="flex flex-col items-center">
         <DisplayRequests
           requests={requests}
-          setRequests={setRequests}
           acceptRequestFunction={acceptRequestFunction}
           denyRequestFunction={denyRequestFunction}
         />

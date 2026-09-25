@@ -1,16 +1,13 @@
 import { PassRequest } from "@/utils/interfaces";
-import React from "react";
 
 interface Props {
   requests: PassRequest[];
-  setRequests: React.Dispatch<React.SetStateAction<PassRequest[]>>;
   acceptRequestFunction: (studentName: string, classDepartedFrom: string, destination: string) => void;
   denyRequestFunction: (studentName: string, classDepartedFrom: string, destination: string) => void;
 }
 
 export default function DisplayRequests({
   requests,
-  setRequests,
   acceptRequestFunction,
   denyRequestFunction,
 }: Props) {
