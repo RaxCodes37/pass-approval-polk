@@ -36,8 +36,6 @@ export default function QrCodePageClient({ teacherName }: Props) {
     };
   }, []);
 
-  console.log(approvedRequestData);
-
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-xl font-semibold sm:text-2xl w-full py-6 rounded-b-md bg-[#4F98C8] text-center">
