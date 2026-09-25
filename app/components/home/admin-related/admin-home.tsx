@@ -9,7 +9,7 @@ import {
   getActiveRequest,
   getPassRequest,
 } from "@/utils/db-actions";
-import { PassRequest } from "@/utils/interfaces";
+import { ApprovedRequest, PassRequest } from "@/utils/interfaces";
 import ActivePass from "./active-pass";
 import { socket } from "@/lib/socket-client";
 
@@ -54,8 +54,10 @@ export default function AdminHome({ teacherName }: Props) {
       ),
     );
 
-    const info = {
+    const info: ApprovedRequest = {
       studentName,
+      destination,
+      timeOfDeparture: new Date().getDate().toString(),
       classDepartedFrom,
       requestStatus: "approved",
     };

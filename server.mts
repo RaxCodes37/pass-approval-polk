@@ -31,8 +31,10 @@ app.prepare().then(() => {
     );
     socket.on(
       "approve-request",
-      ({ studentName, classDepartedFrom, requestStatus }) => {
+      ({ studentName, destination, timeOfDeparture, classDepartedFrom, requestStatus }) => {
         socket.to(classDepartedFrom).emit("approve-request", requestStatus);
+        console.log(`${studentName}, ${destination}, ${timeOfDeparture}`)
+        socket.to(classDepartedFrom).emit("approved-request-info", {studentName, destination, timeOfDeparture})
       },
     );
     socket.on("deny-request", ({ classDepartedFrom, requestStatus }) => {
