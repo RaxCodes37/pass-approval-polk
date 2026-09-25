@@ -5,6 +5,7 @@ import QrCodePassForm from "./qrcode-pass-form";
 import { socket } from "@/lib/socket-client";
 import ApprovedPassPage from "./qrcode-approved-pass";
 import DeniedPassPage from "./qrcode-denied-pass";
+import EndedPassPage from "./qrcode-ended-pass";
 import { ApprovedRequest } from "@/utils/interfaces";
 
 interface Props {
@@ -26,6 +27,7 @@ export default function QrCodePageClient({ teacherName }: Props) {
       setApprovedRequestData((prev) => [...prev, data]);
     });
     socket.on("deny-request", (data) => setRequestStatus(data));
+    socket.on("end-pass", (data) => setRequestStatus(data));
 
     return () => {
       socket.off("approve-request");
@@ -51,6 +53,8 @@ export default function QrCodePageClient({ teacherName }: Props) {
         />
       ) : requestStatus === "denied" ? (
         <DeniedPassPage setMessage={setMessage} />
+      ) : requestStatus === "ended" ? (
+        <EndedPassPage setMessage={setMessage} />
       ) : (
         <QrCodePassForm setMessage={setMessage} teacherName={teacherName} />
       )}
