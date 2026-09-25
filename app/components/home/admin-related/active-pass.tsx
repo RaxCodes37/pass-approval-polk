@@ -66,7 +66,7 @@ export default function ActivePass({
               </td>
               {request.timeOfReturn === null ? (
                 <td className="border border-[#64bffb] bg-[#37739b] p-2">
-                  <button onClick={() => endActivePassFunction(request.passId)}>
+                  <button onClick={() => endActivePassFunction(request.passId)} className="end-pass-btn">
                     End
                   </button>
                 </td>

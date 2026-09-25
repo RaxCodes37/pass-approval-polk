@@ -39,7 +39,7 @@ input:focus {
   box-shadow: 0px 2px 4px #396181;
 }
 
-#requests-display {
+#requests-display, #request-status-display {
   box-shadow: 0px 3px 2px #5abbfc;
 }
 
@@ -58,12 +58,12 @@ input:focus {
   border-color: #69ff73;
 }
 
-.deny-request-btn {
+.deny-request-btn, .end-pass-btn {
   background-color: #d04747;
   border-color: #ff6f6f;
 }
 
-.deny-request-btn:hover {
+.deny-request-btn:hover, .end-pass-btn:hover {
   background-color: #933939;
   border-color: #ff5454;
 }
