@@ -1,5 +1,6 @@
 "use client";
 
+import { socket } from "@/lib/socket-client";
 import { endActivePass } from "@/utils/db-actions";
 import { PassRequest } from "@/utils/interfaces";
 import React, { useState } from "react";
@@ -15,8 +16,15 @@ export default function ActivePass({
 }: Props) {
   const [message, setMessage] = useState<string>("");
 
-  const endActivePassFunction = async (passId: string) => {
+  const endActivePassFunction = async (passId: string, classDepartedFrom: string) => {
     setActiveRequests(activeRequests.filter((aR) => aR.passId !== passId));
+
+    const info = {
+      classDepartedFrom,
+      requestStatus: "ended"
+    }
+
+    socket.emit("end-pass", info)
 
     try {
       await endActivePass(passId);
@@ -66,7 +74,7 @@ export default function ActivePass({
               </td>
               {request.timeOfReturn === null ? (
                 <td className="border border-[#64bffb] bg-[#37739b] p-2">
-                  <button onClick={() => endActivePassFunction(request.passId)} className="end-pass-btn">
+                  <button onClick={() => endActivePassFunction(request.passId, request.classDepartedFrom)} className="end-pass-btn">
                     End
                   </button>
                 </td>

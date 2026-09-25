@@ -33,14 +33,15 @@ app.prepare().then(() => {
       "approve-request",
       ({ studentName, destination, timeOfDeparture, classDepartedFrom, requestStatus }) => {
         socket.to(classDepartedFrom).emit("approve-request", requestStatus);
-        console.log(`${studentName}, ${destination}, ${timeOfDeparture}`)
         socket.to(classDepartedFrom).emit("approved-request-info", {studentName, destination, timeOfDeparture})
       },
     );
     socket.on("deny-request", ({ classDepartedFrom, requestStatus }) => {
       socket.to(classDepartedFrom).emit("deny-request", requestStatus);
-      console.log(requestStatus);
     });
+    socket.on("end-pass", ({ classDepartedFrom, requestStatus }) => {
+      socket.to(classDepartedFrom).emit("end-pass", requestStatus);
+    })
   });
 
   httpServer
