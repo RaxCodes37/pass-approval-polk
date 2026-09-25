@@ -5,6 +5,7 @@ import QrCodePassForm from "./qrcode-pass-form";
 import { socket } from "@/lib/socket-client";
 import ApprovedPassPage from "./qrcode-approved-pass";
 import DeniedPassPage from "./qrcode-denied-pass";
+import { ApprovedRequest } from "@/utils/interfaces";
 
 interface Props {
   teacherName: string;
@@ -13,20 +14,27 @@ interface Props {
 export default function QrCodePageClient({ teacherName }: Props) {
   const [message, setMessage] = useState<string>("");
   const [requestStatus, setRequestStatus] = useState<string>("");
+  const [approvedRequestData, setApprovedRequestData] = useState<
+    ApprovedRequest[]
+  >([]);
 
   useEffect(() => {
     socket.emit("join-class", teacherName);
 
     socket.on("approve-request", (data) => setRequestStatus(data));
+    socket.on("approved-request-info", (data) => {
+      setApprovedRequestData((prev) => [...prev, data]);
+    });
     socket.on("deny-request", (data) => setRequestStatus(data));
 
     return () => {
       socket.off("approve-request");
+      socket.off("approved-request-info");
       socket.off("deny-request");
     };
   }, []);
 
-  console.log(requestStatus);
+  console.log(approvedRequestData);
 
   return (
     <div className="flex flex-col items-center">
@@ -35,7 +43,12 @@ export default function QrCodePageClient({ teacherName }: Props) {
       </h1>
 
       {requestStatus === "approved" ? (
-        <ApprovedPassPage setMessage={setMessage} teacherName={teacherName} />
+        <ApprovedPassPage
+          setMessage={setMessage}
+          teacherName={teacherName}
+          requestStatus={requestStatus}
+          approvedRequestData={approvedRequestData}
+        />
       ) : requestStatus === "denied" ? (
         <DeniedPassPage setMessage={setMessage} />
       ) : (
