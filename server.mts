@@ -29,6 +29,16 @@ app.prepare().then(() => {
         });
       },
     );
+    socket.on(
+      "approve-request",
+      ({ studentName, classDepartedFrom, requestStatus }) => {
+        socket.to(classDepartedFrom).emit("approve-request", requestStatus);
+      },
+    );
+    socket.on("deny-request", ({ classDepartedFrom, requestStatus }) => {
+      socket.to(classDepartedFrom).emit("deny-request", requestStatus);
+      console.log(requestStatus);
+    });
   });
 
   httpServer

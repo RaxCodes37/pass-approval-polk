@@ -54,8 +54,16 @@ export default function AdminHome({ teacherName }: Props) {
       ),
     );
 
+    const info = {
+      studentName,
+      classDepartedFrom,
+      requestStatus: "approved",
+    };
+
     try {
       await acceptRequest(studentName, classDepartedFrom, destination);
+
+      socket.emit("approve-request", info);
     } catch (error) {
       console.error(error);
     } finally {
@@ -77,8 +85,15 @@ export default function AdminHome({ teacherName }: Props) {
       ),
     );
 
+    const info = {
+      classDepartedFrom,
+      requestStatus: "denied",
+    };
+
     try {
       await denyRequest(studentName, classDepartedFrom, destination);
+
+      socket.emit("deny-request", info)
     } catch (error) {
       console.error(error);
     }
