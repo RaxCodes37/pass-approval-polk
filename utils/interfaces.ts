@@ -15,3 +15,11 @@ export interface PassRequest {
   timeOfReturn: string;
   status: string;
 }
+
+export interface ApprovedRequest {
+  studentName: string;
+  destination: string;
+  timeOfDeparture: string;
+  classDepartedFrom: string;
+  requestStatus: string
+}
